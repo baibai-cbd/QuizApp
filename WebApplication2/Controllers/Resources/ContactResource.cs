@@ -8,6 +8,7 @@ namespace QuizApp.Controllers.Resources
 {
     public class ContactResource
     {
+        [Required]
         public string Name { get; set; }
 
         public string Email { get; set; }
