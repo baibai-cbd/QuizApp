@@ -2,7 +2,7 @@ using System;
 
 namespace QuizApp.Controllers.Resources
 {
-    public class FeatureResource
+    public class KeyValuePairResource
     {
         public int Id { get; set; }
 
