@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using QuizApp.Core;
+using QuizApp.Core.Models;
 using QuizApp.Persistence;
 
 namespace WebApplication2

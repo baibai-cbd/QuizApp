@@ -6,7 +6,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuizApp.Controllers.Resources;
-using QuizApp.Models;
+using QuizApp.Core;
+using QuizApp.Core.Models;
 using QuizApp.Persistence;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

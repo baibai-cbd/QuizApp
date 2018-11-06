@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace QuizApp.Models
+namespace QuizApp.Core.Models
 {
     [Table("VehicleFeatures")]
     public class VehicleFeature

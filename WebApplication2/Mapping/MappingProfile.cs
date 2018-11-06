@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using QuizApp.Controllers.Resources;
-using QuizApp.Models;
+using QuizApp.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

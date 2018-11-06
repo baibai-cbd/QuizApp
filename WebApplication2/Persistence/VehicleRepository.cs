@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using QuizApp.Models;
+using QuizApp.Core;
+using QuizApp.Core.Models;
+
 
 namespace QuizApp.Persistence
 {
@@ -39,6 +41,11 @@ namespace QuizApp.Persistence
         public async Task<Vehicle> GetVehicleLite(int id)
         {
             return await context.Vehicles.FindAsync(id);
+        }
+
+        public async Task<Model> GetModel(int modelId)
+        {
+            return await context.Models.FindAsync(modelId);
         }
     }
 }

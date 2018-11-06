@@ -4,10 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using QuizApp.Controllers.Resources;
-using QuizApp.Models;
-using QuizApp.Persistence;
+using QuizApp.Core;
+using QuizApp.Core.Models;
 
 namespace QuizApp.Controllers
 {
@@ -15,14 +14,13 @@ namespace QuizApp.Controllers
     public class VehiclesController : Controller
     {
         private readonly IMapper mapper;
-        private readonly QuizAppDbContext context;
         private readonly IVehicleRepository repository;
         private readonly IUnitOfWork unitOfWork;
-        public VehiclesController(IMapper mapper, QuizAppDbContext context, IVehicleRepository repository, IUnitOfWork unitOfWork)
+        public VehiclesController(IMapper mapper, IVehicleRepository repository, IUnitOfWork unitOfWork)
         {
-            this.context = context;
             this.mapper = mapper;
             this.repository = repository;
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpPost]
@@ -33,7 +31,7 @@ namespace QuizApp.Controllers
 
             // this validation is not necessary when the front-end input limited options
             // but still can be useful in testing
-            var model = await context.Models.FindAsync(vehicleResource.ModelId);
+            var model = await repository.GetModel(vehicleResource.ModelId);
             if(model==null) {
                 ModelState.AddModelError("ModelId", "Invalid modelId.");
                 return BadRequest(ModelState);
@@ -68,6 +66,8 @@ namespace QuizApp.Controllers
             vehicle.LastUpdate = DateTime.Now;
 
             await unitOfWork.CompleteAsync();
+
+            vehicle = await repository.GetVehicle(vehicle.Id);
             var result = mapper.Map<Vehicle, VehicleResource>(vehicle);
 
             return Ok(result);
